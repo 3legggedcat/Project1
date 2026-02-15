@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="functions.js"></script>
+</head>
+<body>
+    <h2>Notes Here</h2>
+    <form id="notes">
+        <label for="name">Name</label>
+        <div>
+            <input id="user-note" name="name" type="text" placeholder="Name">
+            <button type="submit">Add Name</button>
+        </div>
+        <label for="note">Add a note</label>
+
+        <div>
+            <input id="note-content" name="content" type="text" placeholder="Notes goes here" required />
+            <button type="submit">Save Note</button>
+        </div>
+    </form>
+    <ul id="notes-list"></ul>
+</body>
+</html>
