@@ -1,8 +1,9 @@
 # Project 1
 ## How to run
+* Must have git installed to clone repsitory on terminal.
 * Clone the repository
     ```Bash
-    Git clone https://github.com/3legggedcat/Project1.git
+    git clone https://github.com/3legggedcat/Project1.git
     ```
 * Open the file path
     ```Bash
@@ -15,5 +16,5 @@
 ## UML Diagrams
 ### Use Case
 ### State Diagrams
-![Alt text](path/to/state.png)
-![Alt text](path/to/state1.png)
+![Alt text](image/state.png)
+![Alt text](image/state1.png)
