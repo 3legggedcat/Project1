@@ -3,25 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Notes</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
-    <h2>Notes Here</h2>
-    <form id="notes">
-        <label for="name">Name</label>
-        <div>
-            <input id="user-note" name="name" type="text" placeholder="Name">
-            <button type="submit">Add Name</button>
-        </div>
-        <label for="note">Add a note</label>
+    <div class="page">
+        <section class="note-input">
+            <h2>Notes Here</h2>
+            <p class="helper-text">Set a password so only the right person can delete the note later.</p>
+            <form id="notes-form">
+                <label for="user-note">Name</label>
+                <input id="user-note" name="name" type="text" placeholder="Name">
 
-        <div>
-            <input id="note-content" name="content" type="text" placeholder="Notes goes here" required />
-            <button type="submit">Save Note</button>
-        </div>
-    </form>
-    <ul id="notes-list"></ul>
+                <label for="note-content">Add a note</label>
+                <textarea id="note-content" name="content" placeholder="Notes go here" required></textarea>
+
+                <label for="note-password">Deletion password</label>
+                <input id="note-password" name="password" type="password" placeholder="Password">
+
+                <button type="submit">Save Note</button>
+            </form>
+        </section>
+
+        <section class="blog-panel">
+            <h3>Saved Notes</h3>
+            <ul id="notes-list"></ul>
+        </section>
+    </div>
 </body>
 </html>
