@@ -3,7 +3,7 @@
 * Must have git installed to clone repsitory on terminal.
 * Clone the repository
     ```Bash
-    git clone https://github.com/3legggedcat/Project1.git
+    git clone <URL for repo>
     ```
 * Open the file path
     ```Bash
