@@ -15,6 +15,13 @@
     ```
 ## UML Diagrams
 ### Use Case
+![Alt text](image/usecase.png)
 ### State Diagrams
 ![Alt text](image/state.png)
 ![Alt text](image/state1.png)
+### Class Diagrams
+![Alt text](image/class.png)
+![Alt text](image/class1.png)
+###Component Diagrams
+![Alt text](image/component.png)
+![Alt text](image/component1.png)
