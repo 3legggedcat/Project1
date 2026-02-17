@@ -33,6 +33,6 @@
 ![Alt text](image/component.png)
 
 ## Video of Project
-[![Watch the video](thumbnail.jpg)](video.mp4)
+[![Watch the video](image/thumbnail.jpg)](image/video.mp4)
 
 
