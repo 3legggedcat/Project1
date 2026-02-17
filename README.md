@@ -5,6 +5,7 @@ The technologies we used were html and javascript. Since our system is fairly si
 
 ## How to run
 * Must have git installed to clone repsitory on terminal.
+* Must have WSL on windows to run node, can run through VS code terminal.
 * Clone the repository
     ```Bash
     git clone <URL for repo>
@@ -15,7 +16,7 @@ The technologies we used were html and javascript. Since our system is fairly si
     ```
 * Starting the local webpage
     ```Bash
-    start index.html
+    node server.js
     ```
 ## UML Diagrams
 ### Use Case
