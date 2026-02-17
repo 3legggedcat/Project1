@@ -34,6 +34,7 @@
 
 ## Video of Project
 Click the image below &darr;
+
 [![Watch the video](image/thumbnail.png)](https://youtu.be/BdYPwQtZlyI)
 
 
