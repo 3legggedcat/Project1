@@ -1,7 +1,28 @@
 (() => {
+  const determineApiBase = () => {
+    if (typeof window === 'undefined') return '';
+    if (window.API_BASE_URL) return window.API_BASE_URL;
+    if (window.location.protocol === 'file:' || !window.location.host) {
+      return 'http://localhost:5500';
+    }
+    return `${window.location.protocol}//${window.location.host}`;
+  };
+
+  const apiBase = determineApiBase();
+  const apiFetch = (path, options = {}) => {
+    const finalOptions = { ...options };
+    finalOptions.headers = { ...(options.headers || {}) };
+
+    if (finalOptions.body && !finalOptions.headers['Content-Type']) {
+      finalOptions.headers['Content-Type'] = 'application/json';
+    }
+
+    return fetch(`${apiBase}${path}`, finalOptions);
+  };
+
   const form = document.getElementById('notes-form');
   const notesList = document.getElementById('notes-list');
-  const notes = [];
+  let notes = [];
 
   const renderNotes = () => {
     notesList.innerHTML = '';
@@ -24,12 +45,12 @@
       header.className = 'note-card__header';
 
       const title = document.createElement('h4');
-      
       title.textContent = note.name && note.name.trim() ? note.name : 'Anonymous';
 
       const time = document.createElement('span');
       time.className = 'note-card__date';
-      time.textContent = note.createdAt.toLocaleString();
+      const timestamp = note.createdAt instanceof Date ? note.createdAt : new Date(note.createdAt);
+      time.textContent = timestamp.toLocaleString();
 
       const content = document.createElement('p');
       content.textContent = note.content;
@@ -40,31 +61,31 @@
       const deleteButton = document.createElement('button');
       deleteButton.type = 'button';
       deleteButton.textContent = 'Delete';
-      deleteButton.addEventListener('click', () => {
-        // If no password was set, delete immediately
-        if (!note.password || note.password.length === 0) {
-          const index = notes.findIndex(entry => entry.id === note.id);
-          if (index !== -1) {
-            notes.splice(index, 1);
-            renderNotes();
-            alert('Note deleted.');
-          }
-          return;
+      deleteButton.addEventListener('click', async () => {
+        let passwordAttempt = '';
+
+        if (note.requiresPassword) {
+          const attempt = prompt('Enter the password to delete this note:');
+          if (attempt === null) return;
+          passwordAttempt = attempt;
         }
 
-        
-        const attempt = prompt('Enter the password to delete this note:');
-        if (attempt === null) return;
+        try {
+          const response = await apiFetch(`/api/notes/${note.id}`, {
+            method: 'DELETE',
+            body: JSON.stringify({ password: passwordAttempt }),
+          });
 
-        if (attempt === note.password) {
-          const index = notes.findIndex(entry => entry.id === note.id);
-          if (index !== -1) {
-            notes.splice(index, 1);
-            renderNotes();
-            alert('Note deleted.');
+          if (!response.ok) {
+            const error = await response.json().catch(() => ({ message: 'Unable to delete note.' }));
+            throw new Error(error.message || 'Unable to delete note.');
           }
-        } else {
-          alert('Incorrect password.');
+
+          notes = notes.filter(entry => entry.id !== note.id);
+          renderNotes();
+          alert('Note deleted.');
+        } catch (err) {
+          alert(err.message);
         }
       });
 
@@ -81,7 +102,24 @@
     });
   };
 
-  form?.addEventListener('submit', event => {
+  const loadNotes = async () => {
+    try {
+      const response = await apiFetch('/api/notes');
+      if (!response.ok) {
+        throw new Error('Unable to load notes.');
+      }
+      const data = await response.json();
+      notes = data.map(note => ({
+        ...note,
+        createdAt: new Date(note.createdAt),
+      }));
+      renderNotes();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  form?.addEventListener('submit', async event => {
     event.preventDefault();
     const nameField = document.getElementById('user-note');
     const contentField = document.getElementById('note-content');
@@ -91,23 +129,33 @@
     const password = (passwordField?.value ?? '').trim();
     const name = (nameField?.value ?? '').trim() || 'Anonymous';
 
-    
     if (!content) {
       alert('Please add note content.');
       return;
     }
 
-    notes.unshift({
-      id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
-      name,          
-      content,
-      password,      
-      createdAt: new Date()
-    });
+    try {
+      const response = await apiFetch('/api/notes', {
+        method: 'POST',
+        body: JSON.stringify({ name, content, password }),
+      });
 
-    form.reset();
-    renderNotes();
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({ message: 'Cant save note.' }));
+        throw new Error(error.message || 'Unable to save note.');
+      }
+
+      const savedNote = await response.json();
+      notes.unshift({
+        ...savedNote,
+        createdAt: new Date(savedNote.createdAt),
+      });
+      form.reset();
+      renderNotes();
+    } catch (err) {
+      alert(err.message);
+    }
   });
 
-  renderNotes();
+  loadNotes();
 })();
