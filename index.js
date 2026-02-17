@@ -46,7 +46,7 @@
 
       const title = document.createElement('h4');
       title.textContent = note.name && note.name.trim() ? note.name : 'Anonymous';
-```input the date and time```
+
       const time = document.createElement('span');
       time.className = 'note-card__date';
       const timestamp = note.createdAt instanceof Date ? note.createdAt : new Date(note.createdAt);
@@ -57,7 +57,7 @@
 
       const actions = document.createElement('div');
       actions.className = 'note-card__actions';
-      ```fix the issues delete notes```
+
       const requiresPassword = Boolean(
         note.requiresPassword ?? (note.password && note.password.trim())
       );
