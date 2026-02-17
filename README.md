@@ -32,3 +32,7 @@
 ### Component Diagrams
 ![Alt text](image/component.png)
 
+## Video of Project
+[![Watch the video](thumbnail.jpg)](video.mp4)
+
+
