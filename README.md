@@ -1,5 +1,7 @@
 # Project 1
 ## Overview
+Our system is an application built for users to add notes to a list, for them to be stored, and for them to be deleted if needed. A pratical use of this system is for having a multiple members of a class adding notes about lectures and assignments to one comprehensive list in a neat format.
+The technologies we used were html and javascript. Since our system is fairly simple, all we needed were these technologies. The html is present throughout the application, and everytime a user interacts with a button the javascript comes into play. In future iterations, we will use CSS to create a better design of the site.
 
 ## How to run
 * Must have git installed to clone repsitory on terminal.
@@ -39,7 +41,5 @@ Click the image below &darr;
 <br>
 [![Watch the video](image/thumbnail.png)](https://youtu.be/BdYPwQtZlyI)
 
-### Overview
-Our system is an application built for users to add notes to a list, for them to be stored, and for them to be deleted if needed. A pratical use of this system is for having a multiple members of a class adding notes about lectures and assignments to one comprehensive list in a neat format.
-The technologies we used were html and javascript. Since our system is fairly simple, all we needed were these technologies. The html is present throughout the application, and everytime a user interacts with a button the javascript comes into play. In future iterations, we will use CSS to create a better design of the site.
+
 
