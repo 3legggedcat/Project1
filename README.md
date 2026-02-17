@@ -1,4 +1,6 @@
 # Project 1
+## Overview
+
 ## How to run
 * Must have git installed to clone repsitory on terminal.
 * Clone the repository
