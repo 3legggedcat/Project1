@@ -26,6 +26,9 @@
 ### Activity Diagram
 ![Alt text](image/activity.png)
 
+### Package Diagram
+![Alt text](image/package.png)
+
 ### Component Diagrams
 ![Alt text](image/component.png)
 ![Alt text](image/component1.png)
