@@ -22,7 +22,9 @@
 
 ### Class Diagrams
 ![Alt text](image/class.png)
-![Alt text](image/class1.png)
+
+### Activity Diagram
+![Alt text](image/activity.png)
 
 ### Component Diagrams
 ![Alt text](image/component.png)
