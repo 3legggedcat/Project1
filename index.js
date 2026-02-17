@@ -46,7 +46,7 @@
 
       const title = document.createElement('h4');
       title.textContent = note.name && note.name.trim() ? note.name : 'Anonymous';
-
+```input the date and time```
       const time = document.createElement('span');
       time.className = 'note-card__date';
       const timestamp = note.createdAt instanceof Date ? note.createdAt : new Date(note.createdAt);
@@ -57,6 +57,10 @@
 
       const actions = document.createElement('div');
       actions.className = 'note-card__actions';
+      ```fix the issues delete notes```
+      const requiresPassword = Boolean(
+        note.requiresPassword ?? (note.password && note.password.trim())
+      );
 
       const deleteButton = document.createElement('button');
       deleteButton.type = 'button';
@@ -64,7 +68,7 @@
       deleteButton.addEventListener('click', async () => {
         let passwordAttempt = '';
 
-        if (note.requiresPassword) {
+        if (requiresPassword) {
           const attempt = prompt('Enter the password to delete this note:');
           if (attempt === null) return;
           passwordAttempt = attempt;
@@ -112,6 +116,9 @@
       notes = data.map(note => ({
         ...note,
         createdAt: new Date(note.createdAt),
+        requiresPassword: Boolean(
+          note.requiresPassword ?? (note.password && note.password.trim())
+        ),
       }));
       renderNotes();
     } catch (err) {
@@ -149,6 +156,9 @@
       notes.unshift({
         ...savedNote,
         createdAt: new Date(savedNote.createdAt),
+        requiresPassword: Boolean(
+          savedNote.requiresPassword ?? (savedNote.password && savedNote.password.trim())
+        ),
       });
       form.reset();
       renderNotes();
