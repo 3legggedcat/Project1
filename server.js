@@ -15,6 +15,14 @@ const MIME_TYPES = {
 
 const createId = () => Math.random().toString(36).slice(2, 10);
 
+const serializeNote = note => ({
+  id: note.id,
+  name: note.name,
+  content: note.content,
+  createdAt: note.createdAt,
+  requiresPassword: Boolean(note.password),
+});
+
 const sendJSON = (res, status, payload = {}) => {
   res.writeHead(status, {
     'Access-Control-Allow-Origin': '*',
@@ -75,7 +83,7 @@ const server = http.createServer(async (req, res) => {
 
     try {
       if (req.method === 'GET' && url.pathname === '/api/notes') {
-        sendJSON(res, 200, notes);
+        sendJSON(res, 200, notes.map(serializeNote));
         return;
       }
 
@@ -96,7 +104,7 @@ const server = http.createServer(async (req, res) => {
         };
 
         notes.unshift(note);
-        sendJSON(res, 201, note);
+        sendJSON(res, 201, serializeNote(note));
         return;
       }
 
