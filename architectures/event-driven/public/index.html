@@ -10,7 +10,7 @@
   <main class="layout">
     <section class="panel">
       <h1>Event-Driven Notes</h1>
-      <p class="summary">Commands create domain events, and the UI reads from the event-driven projection.</p>
+      <p class="summary">Set a password so only the right person can delete the note later.</p>
       <form id="note-form">
         <label for="name">Name</label>
         <input id="name" name="name" type="text" placeholder="Anonymous">
@@ -21,12 +21,12 @@
         <label for="password">Deletion password</label>
         <input id="password" name="password" type="password" placeholder="Optional password">
 
-        <button type="submit">Publish Create Command</button>
+        <button type="submit">Save Note</button>
       </form>
     </section>
 
     <section class="panel">
-      <h2>Projected Notes View</h2>
+      <h2>Saved Notes</h2>
       <ul id="notes-list"></ul>
     </section>
   </main>
