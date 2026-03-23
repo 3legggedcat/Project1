@@ -2,6 +2,32 @@
 ## Overview
 Our system is an application built for users to add notes to a list, for them to be stored, and for them to be deleted if needed. A practical use of this system is for having multiple members of a class adding notes about lectures and assignments to one comprehensive list in a neat format.
 The technologies we used were html and javascript. Since our system is fairly simple, all we needed were these technologies. The html is present throughout the application, and everytime a user interacts with a button the javascript comes into play. In future iterations, we will use CSS to create a better design of the site.
+## Getting started
+* Must have git installed to clone repsitory on terminal.
+* Must have node installed tp run server.js
+### Steps
+* Clone the repository
+    ```Bash
+    git clone <URL for repo>
+    ```
+* Open the file path
+    ```Bash
+    cd Project1
+    ```
+* Change directory to the architecture
+    ```Bash
+    cd architecture
+    ```
+* Change directory to the architecture type
+    ```Bash
+    cd "architecture type"
+    ```
+* Starting the local webpage
+    ```Bash
+    node server.js
+    ```
+* The terminal will give you the localhost with the correct port to run
+* Enter the localhost with port on a webpage
 ## Architectural Styles
 ### Monolithic 
 #### Rational
