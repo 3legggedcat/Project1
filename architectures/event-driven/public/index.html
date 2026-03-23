@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event-Driven Notes</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="layout">
+    <section class="panel">
+      <h1>Event-Driven Notes</h1>
+      <p class="summary">Commands create domain events, and the UI reads from the event-driven projection.</p>
+      <form id="note-form">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Anonymous">
+
+        <label for="content">Note</label>
+        <textarea id="content" name="content" placeholder="Write a note" required></textarea>
+
+        <label for="password">Deletion password</label>
+        <input id="password" name="password" type="password" placeholder="Optional password">
+
+        <button type="submit">Publish Create Command</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Projected Notes View</h2>
+      <ul id="notes-list"></ul>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
