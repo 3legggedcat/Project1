@@ -6,7 +6,7 @@ const render = notes => {
   if (!notes.length) {
     const item = document.createElement('li');
     item.className = 'empty';
-    item.textContent = 'No projected notes yet.';
+    item.textContent = 'No Notes.';
     notesList.appendChild(item);
     return;
   }
@@ -28,7 +28,7 @@ const render = notes => {
 
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = 'Publish Delete Command';
+    button.textContent = 'Delete note';
     button.addEventListener('click', async () => {
       let password = '';
       if (note.requiresPassword) {
