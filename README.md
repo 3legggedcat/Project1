@@ -29,13 +29,13 @@
     ```Bash
   http://localhost:6100/health
     ```
-* Ports
+* Adding user, notes, and tags. Fill in the xxxx
     ```Bash
-    6001 | Users
-    6002 | Notes
-    6003 | Tags
-    6004 | Weather
-    6100 | API Gateway
+curl -X POST http://localhost:6100/api/users -H "Content-Type: application/json" -d "{\"name\":\"xxxx\",\"email\":\"xxxx\"}"
+
+curl -X POST http://localhost:6100/api/notes -H "Content-Type: application/json" -d "{\"title\":\"xxxx\",\"content\":\"xxxx\",\"userId\":\"xxxx\",\"tagIds\":[\"xxxx\"]}"
+
+curl -X POST http://localhost:6100/api/tags -H "Content-Type: application/json" -d "{\"name\":\"xxxx\",\"color\":\"#xxxxxx\"}"
     ```
 
 
