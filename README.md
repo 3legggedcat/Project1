@@ -1,6 +1,7 @@
 # Project 3
 ## How to run
 ### Steps
+Make sure you have Docker Desktop installed on your machine.
 * Clone the repository
     ```Bash
     git clone <URL for repo>
@@ -13,6 +14,12 @@
     ```Bash
     docker compose  up --build
     ```
+* Load Localhost
+    ```Bash
+    http://localhost:6100/
+    ```
+    
+### Optional steps
 * Load localhost to show weather in phoenix
     ```Bash
    [http://localhost:6100/api/weather?city=phoenix](http://localhost:6004/weather?city=phoenix)
