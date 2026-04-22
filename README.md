@@ -1,3 +1,51 @@
+# Project 3
+## How to run
+### Steps
+Make sure you have Docker Desktop installed on your machine.
+* Clone the repository
+    ```Bash
+    git clone <URL for repo>
+    ```
+* Open the file path
+    ```Bash
+    cd Project1
+    ```
+* Run Docker build
+    ```Bash
+    docker compose  up --build
+    ```
+* Load Localhost
+    ```Bash
+    http://localhost:6100/
+    ```
+    
+### Optional steps
+* Load localhost to show weather in phoenix
+    ```Bash
+   [http://localhost:6100/api/weather?city=phoenix](http://localhost:6004/weather?city=phoenix)
+    ```
+* Load localhost to show users
+    ```Bash
+   [curl http://localhost:6100/api/users](http://localhost:6001/users)
+    ```
+* Load localhost to show API dashboard
+    ```Bash
+  http://localhost:6100/api/dashboard
+    ```
+* Load localhost to show API gateway health
+    ```Bash
+  http://localhost:6100/health
+    ```
+* Adding user, notes, and tags. Fill in the xxxx
+    ```Bash
+curl -X POST http://localhost:6100/api/users -H "Content-Type: application/json" -d "{\"name\":\"xxxx\",\"email\":\"xxxx\"}"
+
+curl -X POST http://localhost:6100/api/notes -H "Content-Type: application/json" -d "{\"title\":\"xxxx\",\"content\":\"xxxx\",\"userId\":\"xxxx\",\"tagIds\":[\"xxxx\"]}"
+
+curl -X POST http://localhost:6100/api/tags -H "Content-Type: application/json" -d "{\"name\":\"xxxx\",\"color\":\"#xxxxxx\"}"
+    ```
+
+
 # Project 2
 ## Overview
 Our system is an application built for users to add notes to a list, for them to be stored, and for them to be deleted if needed. A practical use of this system is for having multiple members of a class adding notes about lectures and assignments to one comprehensive list in a neat format.
