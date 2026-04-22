@@ -124,5 +124,56 @@ Click the image below &darr;
 <br>
 [![Watch the video](image/thumbnail.png)](https://youtu.be/BdYPwQtZlyI)
 
+## Microservices Implementation
+This repository now also includes a microservices-based version of the project in the `microservices/` folder.
+
+### Services
+* `users-service` on port `6001`
+* `notes-service` on port `6002`
+* `tags-service` on port `6003`
+* `weather-service` on port `6004`
+* `api-gateway` on port `6100`
+
+### High-Level Design Document
+* See [docs/microservices-design.md](docs/microservices-design.md)
+
+### Local Run Without Docker
+Open five terminals from the project root and run:
+
+```bash
+node microservices/users-service/server.js
+node microservices/notes-service/server.js
+node microservices/tags-service/server.js
+node microservices/weather-service/server.js
+node microservices/api-gateway/server.js
+```
+
+Then call the gateway at `http://localhost:6100`.
+
+Example requests:
+
+```bash
+curl -X POST http://localhost:6100/api/users -H "Content-Type: application/json" -d "{\"name\":\"Ava\",\"email\":\"ava@example.com\"}"
+curl -X POST http://localhost:6100/api/tags -H "Content-Type: application/json" -d "{\"name\":\"lecture\",\"color\":\"#2563eb\"}"
+curl http://localhost:6100/api/users
+curl http://localhost:6100/api/tags
+curl "http://localhost:6100/api/weather?city=phoenix"
+curl http://localhost:6100/api/dashboard
+```
+
+### Run With Docker Compose
+From the project root:
+
+```bash
+docker compose up --build
+```
+
+The API Gateway will be available at `http://localhost:6100`.
+
+To stop the stack:
+
+```bash
+docker compose down
+```
 
 
