@@ -1,0 +1,61 @@
+services:
+  users-service:
+    build:
+      context: .
+      dockerfile: microservices/users-service/Dockerfile
+    ports:
+      - "6001:6001"
+    volumes:
+      - users_data:/app/microservices/users-service/data
+
+  notes-service:
+    build:
+      context: .
+      dockerfile: microservices/notes-service/Dockerfile
+    ports:
+      - "6002:6002"
+    volumes:
+      - notes_data:/app/microservices/notes-service/data
+
+  tags-service:
+    build:
+      context: .
+      dockerfile: microservices/tags-service/Dockerfile
+    ports:
+      - "6003:6003"
+    volumes:
+      - tags_data:/app/microservices/tags-service/data
+
+  weather-service:
+    build:
+      context: .
+      dockerfile: microservices/weather-service/Dockerfile
+    ports:
+      - "6004:6004"
+    environment:
+      DATA_FILE: /app/weather-data/requests.json
+    volumes:
+      - weather_data:/app/weather-data
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: microservices/api-gateway/Dockerfile
+    ports:
+      - "6100:6100"
+    environment:
+      USERS_SERVICE_URL: http://users-service:6001
+      NOTES_SERVICE_URL: http://notes-service:6002
+      TAGS_SERVICE_URL: http://tags-service:6003
+      WEATHER_SERVICE_URL: http://weather-service:6004
+    depends_on:
+      - users-service
+      - notes-service
+      - tags-service
+      - weather-service
+
+volumes:
+  users_data:
+  notes_data:
+  tags_data:
+  weather_data:
