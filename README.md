@@ -15,11 +15,27 @@
     ```
 * Load localhost to show weather in phoenix
     ```Bash
-   http://localhost:6100/api/weather?city=phoenix
+   [http://localhost:6100/api/weather?city=phoenix](http://localhost:6004/weather?city=phoenix)
     ```
-* Load localhost to show dashboard
+* Load localhost to show users
+    ```Bash
+   [curl http://localhost:6100/api/users](http://localhost:6001/users)
+    ```
+* Load localhost to show API dashboard
     ```Bash
   http://localhost:6100/api/dashboard
+    ```
+* Load localhost to show API gateway health
+    ```Bash
+  http://localhost:6100/health
+    ```
+* Ports
+    ```Bash
+    6001 | Users
+    6002 | Notes
+    6003 | Tags
+    6004 | Weather
+    6100 | API Gateway
     ```
 
 
