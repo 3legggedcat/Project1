@@ -148,7 +148,9 @@ node microservices/weather-service/server.js
 node microservices/api-gateway/server.js
 ```
 
-Then call the gateway at `http://localhost:6100`.
+Then open the Project 3 UI at `http://localhost:6100`.
+
+The gateway now serves a frontend that matches the same general Project 2 layout and styling approach while using the microservices backend.
 
 Example requests:
 
@@ -169,11 +171,11 @@ docker compose up --build
 ```
 
 The API Gateway will be available at `http://localhost:6100`.
+Open that URL in a browser to use the Project 3 frontend.
 
 To stop the stack:
 
 ```bash
 docker compose down
 ```
-
 
