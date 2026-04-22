@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 3 Microservices</title>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Project 3 Microservices</h1>
+    <p>Use this page to create users, tags, notes, and weather lookups through the API gateway.</p>
+
+    <section>
+      <h2>Create User</h2>
+      <form id="user-form">
+        <h3>Create User</h3>
+        <label for="user-name">Name</label>
+        <input id="user-name" name="name" type="text" placeholder="Ava" required>
+
+        <label for="user-email">Email</label>
+        <input id="user-email" name="email" type="email" placeholder="ava@example.com" required>
+
+        <button type="submit">Save User</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Create Tag</h2>
+      <form id="tag-form">
+        <h3>Create Tag</h3>
+        <label for="tag-name">Tag Name</label>
+        <input id="tag-name" name="name" type="text" placeholder="lecture" required>
+
+        <label for="tag-color">Tag Color</label>
+        <input id="tag-color" name="color" type="text" value="#2563eb" placeholder="#2563eb">
+
+        <button type="submit">Save Tag</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Create Note</h2>
+      <form id="notes-form">
+        <h3>Create Note</h3>
+        <label for="note-user">User</label>
+        <select id="note-user" name="userId" required></select>
+
+        <label for="note-tag">Tag</label>
+        <select id="note-tag" name="tagId"></select>
+
+        <label for="note-title">Title</label>
+        <input id="note-title" name="title" type="text" placeholder="Week 8" required>
+
+        <label for="note-content">Add a note</label>
+        <textarea id="note-content" name="content" placeholder="Notes go here" required></textarea>
+
+        <button type="submit">Save Note</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Check Weather</h2>
+      <form id="weather-form">
+        <h3>Check Weather</h3>
+        <label for="weather-city">City</label>
+        <input id="weather-city" name="city" type="text" value="phoenix" placeholder="phoenix">
+
+        <button type="submit">Load Weather</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Dashboard</h2>
+      <p id="status-message">Waiting for data from the API gateway.</p>
+
+      <p>Users: <strong id="users-count">0</strong></p>
+      <p>Notes: <strong id="notes-count">0</strong></p>
+      <p>Tags: <strong id="tags-count">0</strong></p>
+
+      <section id="weather-card">
+        <h4>Weather</h4>
+        <p>Run a lookup to populate this panel.</p>
+      </section>
+
+      <h3>Saved Notes</h3>
+      <ul id="notes-list"></ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,4 +1,6 @@
+const fs = require("fs");
 const http = require("http");
+const path = require("path");
 const { getJsonBody, notFound, sendEmpty, sendJson } = require("../shared/http");
 
 const PORT = Number(process.env.PORT || 6100);
@@ -6,6 +8,13 @@ const USERS_SERVICE_URL = process.env.USERS_SERVICE_URL || "http://localhost:600
 const NOTES_SERVICE_URL = process.env.NOTES_SERVICE_URL || "http://localhost:6002";
 const TAGS_SERVICE_URL = process.env.TAGS_SERVICE_URL || "http://localhost:6003";
 const WEATHER_SERVICE_URL = process.env.WEATHER_SERVICE_URL || "http://localhost:6004";
+const FRONTEND_DIR = path.join(__dirname, "..", "frontend");
+
+const MIME_TYPES = {
+  ".html": "text/html; charset=UTF-8",
+  ".js": "text/javascript; charset=UTF-8",
+  ".json": "application/json; charset=UTF-8",
+};
 
 const serviceMap = {
   "/api/users": USERS_SERVICE_URL,
@@ -53,6 +62,29 @@ const fetchJson = async url => {
   return response.json();
 };
 
+const serveStaticFile = (req, res) => {
+  const resourcePath = req.url === "/" ? "/index.html" : req.url;
+  const safePath = path.normalize(decodeURIComponent(resourcePath)).replace(/^(\.\.[/\\])+/, "");
+  const filePath = path.join(FRONTEND_DIR, safePath);
+
+  if (!filePath.startsWith(FRONTEND_DIR)) {
+    notFound(res);
+    return;
+  }
+
+  fs.readFile(filePath, (error, data) => {
+    if (error) {
+      notFound(res);
+      return;
+    }
+
+    const extension = path.extname(filePath);
+    const type = MIME_TYPES[extension] || "application/octet-stream";
+    res.writeHead(200, { "Content-Type": type });
+    res.end(data);
+  });
+};
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
 
@@ -63,6 +95,11 @@ const server = http.createServer(async (req, res) => {
 
   if (url.pathname === "/health") {
     sendJson(res, 200, { service: "api-gateway", status: "ok" });
+    return;
+  }
+
+  if (req.method === "GET" && (url.pathname === "/" || url.pathname === "/app.js")) {
+    serveStaticFile(req, res);
     return;
   }
 
