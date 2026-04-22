@@ -1,3 +1,28 @@
+# Project 3
+## How to run
+### Steps
+* Clone the repository
+    ```Bash
+    git clone <URL for repo>
+    ```
+* Open the file path
+    ```Bash
+    cd Project1
+    ```
+* Run Docker build
+    ```Bash
+    docker compose  up --build
+    ```
+* Load localhost to show weather in phoenix
+    ```Bash
+   http://localhost:6100/api/weather?city=phoenix
+    ```
+* Load localhost to show dashboard
+    ```Bash
+  http://localhost:6100/api/dashboard
+    ```
+
+
 # Project 2
 ## Overview
 Our system is an application built for users to add notes to a list, for them to be stored, and for them to be deleted if needed. A practical use of this system is for having multiple members of a class adding notes about lectures and assignments to one comprehensive list in a neat format.
